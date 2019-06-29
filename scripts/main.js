@@ -29,7 +29,7 @@ function getComputerChoice() {
   }
 }
 
-// Get game winner
+// get game winner
 function getWinner(p, c) {
   if (p === c) {
     return "draw";
@@ -46,7 +46,7 @@ function getWinner(p, c) {
       return "player";
     }
   } else if (p === "scissors") {
-    if (c === "rock") {
+    if (c === " rock") {
       return "computer";
     } else {
       return "player";
@@ -56,31 +56,32 @@ function getWinner(p, c) {
 
 function showWinner(winner, computerChoice) {
   if (winner === "player") {
-    // Inc player score
+    // inc player score
     scoreboard.player++;
-    // Show modal result
+    // show modal result
     result.innerHTML = `
-      <h1 class="text-win">You Win</h1>
-      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
-      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
+    <h1 class="text-win">You Win</h1>
+    <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+    <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
     `;
   } else if (winner === "computer") {
-    // Inc computer score
+    // inc player score
     scoreboard.computer++;
-    // Show modal result
+    // show modal result
     result.innerHTML = `
-      <h1 class="text-lose">You Lose</h1>
-      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
-      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
-    `;
+        <h1 class="text-win">You Lose</h1>
+        <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+        <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
+        `;
   } else {
     result.innerHTML = `
-      <h1>It's A Draw</h1>
-      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
-      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
+    <h1>It's A Draw</h1>
+    <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+    <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
     `;
   }
-  // Show score
+
+  // Show Score
   score.innerHTML = `
     <p>Player: ${scoreboard.player}</p>
     <p>Computer: ${scoreboard.computer}</p>
@@ -89,24 +90,24 @@ function showWinner(winner, computerChoice) {
   modal.style.display = "block";
 }
 
-// Restart game
+// Restart Game
 function restartGame() {
   scoreboard.player = 0;
   scoreboard.computer = 0;
   score.innerHTML = `
-    <p>Player: 0</p>
-    <p>Computer: 0</p>
+  <p>Player: 0</p>
+  <p>Computer: 0</p>
   `;
 }
 
-// Clear modal
+// Clear Modal
 function clearModal(e) {
   if (e.target == modal) {
     modal.style.display = "none";
   }
 }
 
-// Event listeners
+// Event Listeners
 choices.forEach(choice => choice.addEventListener("click", play));
 window.addEventListener("click", clearModal);
 restart.addEventListener("click", restartGame);
